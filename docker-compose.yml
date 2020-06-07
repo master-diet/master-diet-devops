@@ -4,8 +4,8 @@ services:
   master-diet-app:
     container_name: master-diet-backend-application
     build:
-      context: webapp/build/master-diet-backend
-      dockerfile: webapp/build/master-diet-backend/Dockerfile
+      context: ./master-diet-backend
+      dockerfile: Dockerfile
     volumes:
       - /data/master-diet-app-data
     ports:
@@ -20,8 +20,8 @@ services:
   master-diet-frontend:
     container_name: master-diet-frontend
     build:
-      context: webapp/build/master-diet-frontend
-      dockerfile: webapp/build/master-diet-frontend/Dockerfile
+      context: ./master-diet-frontend
+      dockerfile: Dockerfile
     stdin_open: true
     volumes:
       - '.:/master-diet-frontend/app'
