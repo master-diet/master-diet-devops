@@ -1,4 +1,4 @@
-version: '3.6'
+version: '3.3'
 
 services:
   master-diet-app:
@@ -13,10 +13,7 @@ services:
       - "8001:8001"
     command: java -agentlib:jdwp=transport=dt_socket,server=y,suspend=n,address=*:8001 -jar /usr/local/lib/master-diet-backend-application.jar
     environment:
-      # Windows
-      - spring.datasource.url=jdbc:postgresql://host.docker.internal:5432/master-diet-db
-      # Linux
-  #      - spring.datasource.url=jdbc:postgresql://172.17.0.1:5432/master-diet-db
+      - spring.datasource.url=jdbc:postgresql://master-diet-db:5432/master-diet-db
     depends_on:
       - master-diet-db
   master-diet-frontend:
@@ -33,7 +30,7 @@ services:
     environment:
       - CHOKIDAR_USEPOLLING=true
   master-diet-db:
-    container_name: master-diet-db
+    container_name: master-diet-database
     image: postgres:11.7
     env_file: master-diet-db.env
     environment:
