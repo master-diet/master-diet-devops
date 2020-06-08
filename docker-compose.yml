@@ -4,8 +4,8 @@ services:
   master-diet-app:
     container_name: master-diet-backend-application
     build:
-      context: webapp/build/master-diet-backend
-      dockerfile: webapp/build/master-diet-backend/Dockerfile
+      context: ./master-diet-backend
+      dockerfile: Dockerfile
     volumes:
       - /data/master-diet-app-data
     ports:
@@ -14,14 +14,16 @@ services:
     command: java -agentlib:jdwp=transport=dt_socket,server=y,suspend=n,address=*:8001 -jar /usr/local/lib/master-diet-backend-application.jar
     environment:
       # Windows
-      - spring.datasource.url=jdbc:postgresql://host.docker.internal:5433/master-diet-db
+      - spring.datasource.url=jdbc:postgresql://host.docker.internal:5432/master-diet-db
       # Linux
-  #      - spring.datasource.url=jdbc:postgresql://172.17.0.1:5433/master-diet-db
+  #      - spring.datasource.url=jdbc:postgresql://172.17.0.1:5432/master-diet-db
+    depends_on:
+      - master-diet-db
   master-diet-frontend:
     container_name: master-diet-frontend
     build:
-      context: webapp/build/master-diet-frontend
-      dockerfile: webapp/build/master-diet-frontend/Dockerfile
+      context: ./master-diet-frontend
+      dockerfile: Dockerfile
     stdin_open: true
     volumes:
       - '.:/master-diet-frontend/app'
@@ -39,7 +41,7 @@ services:
     volumes:
       - db-data:/db/data
     ports:
-      - 5433:5432
+      - 5432:5432
 
 volumes:
   db-data:
