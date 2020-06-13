@@ -1,1 +1,1 @@
-docker-compose up master-diet-db master-diet-app
+docker-compose up --build master-diet-db master-diet-app 
