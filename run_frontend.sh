@@ -1,1 +1,1 @@
-docker-compose up master-diet-frontend
+docker-compose up --build master-diet-frontend
