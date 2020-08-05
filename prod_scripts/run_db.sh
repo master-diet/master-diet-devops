@@ -1,0 +1,1 @@
+docker-compose -f docker-compose-prod.yml up --build master-diet-db

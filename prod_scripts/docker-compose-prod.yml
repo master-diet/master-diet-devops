@@ -1,0 +1,42 @@
+version: '3.3'
+
+services:
+  master-diet-app:
+    container_name: master-diet-backend-application
+    build:
+      context: ./master-diet-backend
+      dockerfile: Dockerfile
+    volumes:
+      - /data/master-diet-app-data
+    ports:
+      - "8081:8081"
+      - "8001:8001"
+    command: java -agentlib:jdwp=transport=dt_socket,server=y,suspend=n,address=*:8001 -jar /usr/local/lib/master-diet-backend-application.jar
+    env_file: ./master-diet-secrets/prod-master-diet-backend.env
+    depends_on:
+      - master-diet-db
+  master-diet-frontend:
+    container_name: master-diet-frontend
+    build:
+      context: ./master-diet-frontend
+      dockerfile: Dockerfile
+    stdin_open: true
+    volumes:
+      - '.:/master-diet-frontend/app'
+      - './master-diet-frontend/app/node_modules'
+    ports:
+      - 80:3000
+    env_file: ./master-diet-secrets/prod-master-diet-frontend.env
+  master-diet-db:
+    container_name: master-diet-database
+    image: postgres:11.7
+    env_file: ./master-diet-secrets/prod-master-diet-db.env
+    environment:
+      - PGDATA=/db/data
+    volumes:
+      - db-data:/db/data
+    ports:
+      - 5432:5432
+
+volumes:
+  db-data:
