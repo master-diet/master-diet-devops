@@ -9,12 +9,12 @@ every commit message will have prefix: ```[MASTERDIET-AB] Some commit message```
 
 ## Usage of docker-compose.yml
 
-### Preparation
+### Preparation for development
  
-Run prepare.sh in order to clone repositories and copy docker-compose.yml there
+Run prepare_dev.sh in order to get all necessary files required to run the project:
 
 ```
-sh prepare.sh
+sh prepare_dev.sh
 ```
  
 ### Running
