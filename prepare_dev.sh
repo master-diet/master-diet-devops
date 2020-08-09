@@ -1,5 +1,5 @@
 mkdir master-diet
-mv dev_scripts/* master-diet/
+cp dev_scripts/* master-diet/
 cd master-diet
 git clone https://github.com/master-diet/master-diet-secrets
 git clone https://github.com/master-diet/master-diet-backend
