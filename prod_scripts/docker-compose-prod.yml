@@ -19,7 +19,7 @@ services:
     container_name: master-diet-frontend
     build:
       context: ./master-diet-frontend
-      dockerfile: Dockerfile
+      dockerfile: Dockerfile.prod
     stdin_open: true
     volumes:
       - '.:/master-diet-frontend/app'
