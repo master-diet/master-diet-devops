@@ -11,7 +11,7 @@ services:
     ports:
       - "8081:8081"
       - "8001:8001"
-    command: java -agentlib:jdwp=transport=dt_socket,server=y,suspend=n,address=*:8001 -jar /usr/local/lib/master-diet-backend-application.jar
+    command: java -Xmx4096m -agentlib:jdwp=transport=dt_socket,server=y,suspend=n,address=*:8001 -jar /usr/local/lib/master-diet-backend-application.jar
     env_file: ./master-diet-secrets/prod/master-diet-backend.env
     depends_on:
       - master-diet-db
